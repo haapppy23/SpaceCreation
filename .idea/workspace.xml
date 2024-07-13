@@ -18,6 +18,8 @@
       <change afterPath="$PROJECT_DIR$/SpaceCreation/src/main/java/com/aws/spacecreation/user/UserSecuritySerivce.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/SpaceCreation/src/main/java/com/aws/spacecreation/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpaceCreation/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/SpaceCreation/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpaceCreation/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/SpaceCreation/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +63,6 @@
     &quot;accountId&quot;: &quot;0714b49a-b5fd-49d9-ba6b-1b0bd1a0b906&quot;
   }
 }</component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -75,47 +74,30 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Gradle.SpaceCreation 빌드.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.SpaceCreationApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jingj/OneDrive/문서/GitHub/SpaceCreation/SpaceCreation/src/main/java/com/aws/spacecreation",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
-    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jingj\OneDrive\문서\GitHub\SpaceCreation\SpaceCreation\src\main\java\com\aws\spacecreation" />
       <recent name="C:\Users\jingj\OneDrive\문서\GitHub\SpaceCreation\SpaceCreation\src\main\resources\templates" />
       <recent name="C:\Users\jingj\OneDrive\문서\GitHub\SpaceCreation\SpaceCreation\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jingj\OneDrive\문서\GitHub\SpaceCreation\SpaceCreation\src\main\resources\templates" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.aws.spacecreation" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration name="SpaceCreationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="SpaceCreation.SpaceCreation.main~1" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.aws.spacecreation.SpaceCreationApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -141,7 +123,6 @@
       <workItem from="1720777200354" duration="3184000" />
       <workItem from="1720844862233" duration="663000" />
       <workItem from="1720850394915" duration="2705000" />
-      <workItem from="1720861258068" duration="1412000" />
     </task>
     <servers />
   </component>
