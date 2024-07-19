@@ -1,8 +1,9 @@
 package com.aws.spacecreation.review;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/question")
@@ -19,9 +21,11 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping("/list")
-    public String list(Model model) {
-        List<Question> questionList = questionService.getAllQuestions();
-        model.addAttribute("questionList", questionList);
+    public String list(Model model, @RequestParam(defaultValue = "0", name = "page") int page) {
+        int pageSize = 10; // 페이지당 항목 수
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<Question> questionPage = questionService.getAllQuestions(pageable);
+        model.addAttribute("questionPage", questionPage);
         return "question_list";
     }
 
@@ -49,10 +53,10 @@ public class QuestionController {
         questionService.delete(id);
         return "redirect:/question/list";
     }
-    
+
     @PostMapping("/delete/{id}")
-    public String deleteQuestion(@PathVariable("id")Integer id) {
-    	questionService.deleteQuestion(id);
-    	return "redirect:/question/list";
+    public String deleteQuestion(@PathVariable("id") Integer id) {
+        questionService.deleteQuestion(id);
+        return "redirect:/question/list";
     }
 }
