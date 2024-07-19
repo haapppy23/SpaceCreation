@@ -33,9 +33,6 @@ public class Question {
 	
 	private LocalDateTime createDate;
 	
-	private String image1;
-    private String image2;
-    private String image3;
 	
     @ManyToOne
     private SiteUser user;
@@ -43,5 +40,6 @@ public class Question {
 	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)//question은 외래키
 	private List<Answer> answerList;
 
+	private int views;
 	
 }

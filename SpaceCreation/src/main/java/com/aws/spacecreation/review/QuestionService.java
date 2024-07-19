@@ -1,65 +1,69 @@
 package com.aws.spacecreation.review;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aws.spacecreation.DataNotFoundException;
-import com.aws.spacecreation.S3Service;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Service
+@Transactional
 public class QuestionService {
-
 	@Autowired
-	private final QuestionRepository questionRepoisitory;
-		
-	@Autowired
-	private S3Service s3Service;
-	 public Question getQuestion(Integer id) {  
-	        Optional<Question> question = this.questionRepoisitory.findById(id);
-	        if (question.isPresent()) {
-	            return question.get();
-	        } else { 
-	            throw new DataNotFoundException("question not found");
-	        }
-	    }
-	    
-	    
-	    public void create(Question question, MultipartFile[] files) throws IOException {
-
-			for(int i = 0; i < files.length; i++) {
-				MultipartFile file = files[i];
-				UUID uuid = UUID.randomUUID();
-				String fileName = uuid + "_" + file.getOriginalFilename();
-				s3Service.uploadmanyFiles(file);
-				switch(i) {
-				case 0:
-					question.setImage1(fileName);
-					break;
-				case 1:
-					question.setImage2(fileName);
-					break;
-				case 2:
-					question.setImage3(fileName);
-					break;
-				}
-			}
-			question.setCreateDate(LocalDateTime.now());
-			this.questionRepoisitory.save(question);
-	    }
-
+	private EmailService emailservice;
 	
-	public void delete(Integer id) {
-		questionRepoisitory.deleteById(id);
-	}
-	
-	 	
+    @Autowired
+    private QuestionRepository questionRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
+    
+    @Transactional(readOnly = true)
+    public List<Question> getAllQuestions() {
+        return questionRepository.findAll();
+    }
+
+    @Transactional
+    public Question getQuestion(Integer id) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        if (optionalQuestion.isPresent()) {
+            Question question = optionalQuestion.get();
+            increaseViews(question); // 조회수 증가 메서드 호출
+            return question;
+        } else {
+            throw new DataNotFoundException("Question not found with id: " + id);
+        }
+    }
+
+    @Transactional
+    public void create(Question question) {
+    	emailservice.sendEmailFromDaum(question);
+    	question.setCreateDate(LocalDateTime.now());
+        questionRepository.save(question);
+        
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        questionRepository.deleteById(id);
+    }
+    
+    // 조회수 증가 메서드
+    private void increaseViews(Question question) {
+        int views = question.getViews();
+        question.setViews(views + 1);
+        questionRepository.save(question); // 변경된 조회수를 저장
+    }
+    
+    @Transactional
+    public void deleteQuestion(Integer id) {
+    	questionRepository.deleteById(id);
+    }
 }
